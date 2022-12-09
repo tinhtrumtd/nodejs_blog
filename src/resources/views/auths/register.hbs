@@ -1,0 +1,42 @@
+  <div class="mt-1">
+    <h3>Đăng Ký Tài Khoản</h3>
+    {{#if errorMessage}}
+    {{#each errorMessage}}
+    <div class="alert alert-danger">
+        {{sum @index 1 }}:{{this.msg}}
+    </div>
+
+    {{/each}}
+    {{/if}}
+    <form method="POST" action="/auth/register">
+        <div class="mb-3">
+        <label for="fullname" class="form-label">Họ Tên</label>
+        <input type="text" class="form-control" id="fullname" name="fullname">
+        </div>
+        <div class="mb-3">
+        <label for="username" class="form-label">Tên Đăng nhập</label>
+        <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="mb-3">
+        <label for="phonenumber" class="form-label">Số Điện Thoại</label>
+        <input type="text" class="form-control" id="phonenumber" name="phonenumber">
+        </div>
+       
+        <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+        <label for="birthday" class="form-label">Ngày Tháng Năm sinh</label>
+        <input type="date" class="form-control" id="birthday" name="birthday">
+        </div>
+        <div class="mb-3">
+        <label for="password" class="form-label">Mật khẩu</label>
+        <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="col-12">
+        <button type="submit" class="btn btn-primary">Đăng ký tài khoản</button>
+        </div>
+    </form>
+</div>
+  

@@ -1,0 +1,63 @@
+<div class="mt-4">
+    <h3>Tài Khoản Học Sinh</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Họ Và Tên</th>
+                <th scope="col">Số Điện thoại</th>
+                <th scope="col">Sinh Nhật</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.fullname}}</td>
+                <td>{{this.phonenumber}}</td>
+                <td>{{this.birthday}}</td>
+                <td>
+                    <a href="/users/{{this._id}}/edit" class="btn btn-primary">Sửa</a>
+                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#exampleModal">Xóa</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">XÓA TÀI KHOẢN</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn xóa tài khoản hiện tại
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="btn-delete-user" type="button" class="btn btn-danger"> Xóa </button>
+      </div>
+    </div>
+  </div>
+</div>
+<form name="delete-user-form" method="POST"></form>
+<script>
+  document.addEventListener('DOMContentLoaded',function(){
+    var userid;
+    var deleteForm=document.forms['delete-user-form']
+    var exampleModal = document.getElementById('exampleModal')
+    var btnDeleteCourse = document.getElementById('btn-delete-user')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget
+    userid = button.getAttribute('data-id')
+    })
+    btnDeleteCourse.onclick = function(){
+      deleteForm.action= '/users/' + userid + '?_method=DELETE';
+      deleteForm.submit();
+    }
+
+  })
+    
+</script>
